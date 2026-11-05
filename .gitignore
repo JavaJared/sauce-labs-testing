@@ -1,0 +1,586 @@
+
+# ==============================
+# Operating system / Editor
+# ==============================
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# ==============================
+# Credentials and Secrets
+# ==============================
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+*.pem
+*.key
+*.p12
+*.p8
+*.mobileprovision
+secrets.json
+credentials.json
+
+# ==============================
+# JavaScript / Node.js
+# ==============================
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.npm/
+coverage/
+.nyc_output/
+
+# ==============================
+# Python
+# ==============================
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+
+# ==============================
+# Java
+# ==============================
+target/
+.gradle/
+*.class
+*.jar
+
+# ==============================
+# C# / .NET
+# ==============================
+bin/
+obj/
+*.user
+*.suo
+
+# ==============================
+# Ruby
+# ==============================
+.bundle/
+vendor/bundle/
+
+# ==============================
+# Test Results / Artifacts
+# ==============================
+allure-results/
+allure-report/
+test-results/
+playwright-report/
+screenshots/
+videos/
+*.log
+
+# ==============================
+# Mobile Application Builds
+# ==============================
+*.apk
+*.aab
+*.ipa
+
+# ==============================
+# Cypress
+# ==============================
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# ==============================
+# Local Overrides
+# ==============================
+*.local
+```
+
+Save the file with `Cmd + S`.
+
+**Security note:** `.gitignore` is a safety measure, not a guarantee that every credential is protected. Before making the first commit, inspect your staged files and check for hardcoded Sauce Labs access keys.
+
+If you previously pasted a real Sauce Labs key into a script, replace it with `process.env.SAUCE_ACCESS_KEY` and rotate that key if it was exposed.
+
+## Step 6. Create your master README
+
+Every GitHub repository should have a `README.md` explaining what the repository contains.
+
+Create it:
+
+```bash
+touch README.md
+code README.md
+```
+
+Paste:
+
+<WritingBlock id="59341" variant="document"># Sauce Labs Testing
+
+A centralized collection of automated testing projects, examples, and experiments using Sauce Labs.
+
+## Purpose
+
+This repository serves as a personal testing workspace for practicing and developing automation across multiple languages and frameworks.
+
+The goal is to maintain organized, reusable test projects while exploring the capabilities of the Sauce Labs platform.
+
+## Testing Frameworks
+
+| Framework | Purpose | Languages |
+|---|---|---|
+| Appium | Android and iOS mobile automation | JavaScript, Python, Java, C#, Ruby |
+| Selenium | Cross-browser web automation | JavaScript, Python, Java, C#, Ruby |
+| Playwright | Modern browser automation | JavaScript, Python |
+| Cypress | End-to-end web testing | JavaScript |
+| API Testing | API validation and integration testing | JavaScript, Python |
+
+## Repository Structure
+
+Each framework has its own directory, divided into language-specific projects.
+
+Each project may include:
+
+- Test scripts
+- Framework configuration
+- Dependency files
+- Setup instructions
+- Sample test data
+- Troubleshooting notes
+
+## Current Projects
+
+### Appium — JavaScript
+
+Automated Android testing using WebdriverIO and Sauce Labs Real Device Cloud.
+
+**Application:** Sauce Labs My Demo App (React Native)
+
+Initial test coverage includes product catalog validation, product details, cart functionality, login validation, locked-out users, and checkout.
+
+## Getting Started
+
+1. Clone this repository.
+2. Navigate to the appropriate framework and language folder.
+3. Install the required dependencies.
+4. Configure your Sauce Labs credentials using environment variables.
+5. Follow the project-specific README to execute tests.
+
+## Sauce Labs Credentials
+
+Tests use environment variables for authentication:
+
+- `SAUCE_USERNAME`
+- `SAUCE_ACCESS_KEY`
+
+Never commit access keys or other secrets to this repository.
+
+## Future Plans
+
+- Expand Android and iOS Appium coverage.
+- Add Selenium tests in multiple languages.
+- Add Playwright and Cypress projects.
+- Build reusable test utilities.
+- Integrate GitHub Actions with Sauce Labs.
+- Document debugging and troubleshooting examples.
+
+## Resources
+
+- [Sauce Labs Documentation](https://docs.saucelabs.com/)
+- [Appium Documentation](https://appium.io/docs/en/latest/)
+- [Selenium Documentation](https://www.selenium.dev/documentation/)
+- [Playwright Documentation](https://playwright.dev/)
+- [Cypress Documentation](https://docs.cypress.io/)</WritingBlock>
+
+This will serve as the homepage of your GitHub repository.
+
+You can update it as you add new frameworks, languages, and example applications.
+
+## Step 7. Make the empty folders visible on GitHub
+
+Git only tracks files, not empty directories.
+
+To ensure all your framework folders appear in GitHub, we can add `.gitkeep` placeholder files.
+
+From the repository root, run:
+
+```bash
+find appium selenium playwright cypress api-testing shared docs \
+  -type d -empty -exec touch {}/.gitkeep \;
+```
+
+This adds an empty `.gitkeep` file to each currently empty directory.
+
+Once you add actual test files to a folder, you can remove its `.gitkeep` file.
+
+## Step 8. Create a project-specific README for Appium JavaScript
+
+The master README describes the overall repository. Each testing project should also have its own README.
+
+Create one:
+
+```bash
+touch appium/javascript/README.md
+code appium/javascript/README.md
+```
+
+Add:
+
+<WritingBlock id="59342" variant="document"># Appium — JavaScript
+
+Automated Android testing using WebdriverIO, Appium, and Sauce Labs.
+
+## Application Under Test
+
+Sauce Labs My Demo App — React Native
+
+Application build: `Android-MyDemoAppRN.1.3.0.build-244.apk`
+
+## Requirements
+
+- Node.js and npm
+- Sauce Labs account
+- Sauce Labs Real Device Cloud access
+- Demo app uploaded to Sauce Labs App Storage
+
+## Installation
+
+From this directory:
+
+```bash
+npm install
+```
+
+## Configure Credentials
+
+Set your Sauce Labs username and access key in your local environment:
+
+```bash
+export SAUCE_USERNAME="your-username"
+export SAUCE_ACCESS_KEY="your-access-key"
+```
+
+## Run Tests
+
+Run the product catalog test:
+
+```bash
+node sauce-demo-app-tests.js catalog
+```
+
+Run the shopping cart test:
+
+```bash
+node sauce-demo-app-tests.js cart
+```
+
+Run the checkout test:
+
+```bash
+node sauce-demo-app-tests.js checkout
+```
+
+Run the full test suite:
+
+```bash
+node sauce-demo-app-tests.js all
+```
+
+## Available Tests
+
+| Test | Description |
+|---|---|
+| catalog | Validate product catalog |
+| product | Validate product details |
+| cart | Test cart functionality |
+| locked | Test locked-out user authentication |
+| validation | Test required-field login validation |
+| checkout | Complete an end-to-end checkout |
+
+## Sauce Labs Configuration
+
+- Platform: Android
+- Automation driver: UiAutomator2
+- Device selection: Google Android devices
+- Region: US West
+- Application source: Sauce Labs App Storage
+
+## Debugging
+
+Test results and session artifacts are available in the Sauce Labs Automated Test Results dashboard.
+
+If a test fails, review the Appium command log, available device logs, screenshots, and session video.</WritingBlock>
+
+Now your JavaScript Appium project is independently documented.
+
+---
+
+## Step 9. Create the GitHub repository
+
+Now that your project is organized locally, let's put it on GitHub.
+
+Open <Link url="https://github.com/new" title="GitHub — Create a new repository"/>.
+
+Configure it as follows:
+
+<box border radius="xl" padding={3} gap={3}>
+  <row align="center" gap={2}>
+    <icon name="github" size="lg"/>
+    **New GitHub repository**
+  </row>
+  <box gap={1}>
+    <label>Repository name</label>
+    <box border radius="md" padding={3}>
+      <text weight="medium">sauce-labs-testing</text>
+    </box>
+  </box>
+  <box gap={1}>
+    <label>Description</label>
+    <box border radius="md" padding={3}>
+      <text size="sm">Personal Sauce Labs test automation projects across multiple frameworks and programming languages.</text>
+    </box>
+  </box>
+  <box gap={1}>
+    <label>Visibility</label>
+    <row align="center" gap={2}>
+      <icon name="lock" color="secondary"/>
+      **Private**
+    </row>
+    <text color="secondary" size="xs">Recommended initially while reviewing your test scripts and configuration for sensitive information.</text>
+  </box>
+  <divider color="subtle"/>
+  <box gap={2}>
+    <row align="center" gap={2}>
+      <icon name="square" color="secondary"/>
+      Do not initialize with a README
+    </row>
+    <row align="center" gap={2}>
+      <icon name="square" color="secondary"/>
+      Do not add a .gitignore
+    </row>
+    <row align="center" gap={2}>
+      <icon name="square" color="secondary"/>
+      Do not choose a license yet
+    </row>
+  </box>
+</box>
+
+Click **Create repository**.
+
+We don't want GitHub to generate a README or `.gitignore` because we've already created those locally.
+
+Once the repository is created, leave that page open.
+
+## Step 10. Make your first Git commit
+
+Return to your Terminal.
+
+Verify you're in the repository root:
+
+```bash
+cd ~/Developer/sauce-labs/sauce-labs-testing
+```
+
+Check the Git status:
+
+```bash
+git status
+```
+
+Before committing, make sure none of your projects contains credentials or other files you don't intend to publish.
+
+You can also verify that dependencies and environment files are ignored:
+
+```bash
+git check-ignore appium/javascript/node_modules \
+  appium/javascript/.env
+```
+
+Stage your project:
+
+```bash
+git add .
+```
+
+Review exactly what will be included:
+
+```bash
+git diff --cached --stat
+git diff --cached --name-only
+```
+
+Look through the staged changes, especially JavaScript test files and configuration files, for secrets.
+
+If everything looks correct, create your first commit:
+
+```bash
+git commit -m "Initial Sauce Labs testing monorepo setup"
+```
+
+## Step 11. Connect your local repository to GitHub
+
+On your new GitHub repository page, copy the HTTPS repository URL.
+
+It should look something like:
+
+```text
+https://github.com/YOUR_USERNAME/sauce-labs-testing.git
+```
+
+Replace `YOUR_USERNAME` in the following command with your actual GitHub username:
+
+```bash
+git remote add origin \
+  https://github.com/YOUR_USERNAME/sauce-labs-testing.git
+```
+
+Verify:
+
+```bash
+git remote -v
+```
+
+You should see `origin` pointing to your GitHub repository.
+
+Then push the initial commit:
+
+```bash
+git push -u origin main
+```
+
+GitHub may require authentication. If you have GitHub CLI installed and authenticated, you can use that; otherwise, use your existing Git credential configuration or a personal access token when prompted. GitHub does not accept a normal account password for Git operations over HTTPS.
+
+Refresh your repository page.
+
+You should now see your full testing project structure on GitHub.
+
+## Step 12. Understand your daily workflow
+
+From here onward, you can work on each testing project independently.
+
+For example, to work on Appium JavaScript:
+
+```bash
+cd ~/Developer/sauce-labs/sauce-labs-testing/appium/javascript
+```
+
+Run your tests:
+
+```bash
+node sauce-demo-app-tests.js catalog
+```
+
+After modifying or adding test scripts, return to the monorepo root:
+
+```bash
+cd ../..
+```
+
+Commit the changes:
+
+```bash
+git add .
+git commit -m "Expand Appium JavaScript tests"
+git push
+```
+
+You can do the same thing for your Python Selenium project or any other testing framework.
+
+### Example: Adding a Python Selenium project
+
+Navigate to the Python Selenium directory:
+
+```bash
+cd ~/Developer/sauce-labs/sauce-labs-testing/selenium/python
+```
+
+Create a virtual environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Install your testing dependencies:
+
+```bash
+python -m pip install selenium pytest
+```
+
+Create a test file:
+
+```bash
+touch test_login.py
+```
+
+You can then build out that project without interfering with your JavaScript Appium setup.
+
+The `.venv` directory will remain local and won't be committed.
+
+## Step 13. Verify the complete setup
+
+Here's a checklist you can use while following the instructions.
+
+{@body const steps = ["Created sauce-labs-testing folder","Initialized Git on main","Created framework and language directories","Opened the project in VS Code","Copied existing Appium JavaScript project","Created .gitignore","Created master README.md","Created Appium JavaScript README.md","Added .gitkeep files","Created private GitHub repository","Reviewed and committed local files","Connected origin and pushed main"]}
+{@body const [checked,setChecked] = DIL.useState({})}
+<box border radius="xl" padding={3} gap={3}>
+  <row align="center" justify="between">
+    **Monorepo setup checklist**
+    <text color="secondary" size="xs" tabularNums>{Object.values(checked).filter(Boolean).length} / {steps.length}</text>
+  </row>
+  <box background="surface-tertiary" radius="full" height="6px" clip>
+    <box background="rgba(32,136,104,1)" height="100%" width={`${Object.values(checked).filter(Boolean).length/steps.length*100}%`}/>
+  </box>
+  {#each steps as s,i}
+    <checkbox key={i} checked={!!checked[i]} onChange={v=>setChecked(p=>({...p,[i]:v}))}>{s}</checkbox>
+  {/each}
+  <row justify="end">
+    <button color="secondary" variant="outline" size="sm" onClick={()=>setChecked({})}>Reset checklist</button>
+  </row>
+</box>
+
+## What your finished repository will look like
+
+Your GitHub homepage will show one repository with an organized structure:
+
+```text
+sauce-labs-testing/
+│
+├── appium/
+│   ├── javascript/       ← Your current demo app tests
+│   ├── python/
+│   ├── java/
+│   ├── csharp/
+│   └── ruby/
+│
+├── selenium/
+│   ├── javascript/
+│   ├── python/
+│   ├── java/
+│   ├── csharp/
+│   └── ruby/
+│
+├── playwright/
+│   ├── javascript/
+│   └── python/
+│
+├── cypress/
+│   └── javascript/
+│
+├── api-testing/
+│   ├── javascript/
+│   └── python/
+│
+├── shared/
+├── docs/
+├── .github/
+│   └── workflows/
+│
+├── .gitignore
+└── README.md
+```
+
+**My recommendation for what to do after this:** Add GitHub Actions to run specific Sauce Labs test suites automatically. We can configure independent workflows so your Appium tests, Selenium tests, and Playwright tests run only when relevant files change, while keeping everything in one central repository.
