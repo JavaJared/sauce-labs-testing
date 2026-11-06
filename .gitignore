@@ -583,4 +583,30 @@ sauce-labs-testing/
 └── README.md
 ```
 
+# Credentials and environment variables
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Java / Maven
+target/
+*.class
+
+# Test artifacts
+screenshots/
+test-results/
+surefire-reports/
+
+# macOS
+.DS_Store
+
+# VS Code local settings
+.vscode/
+
 **My recommendation for what to do after this:** Add GitHub Actions to run specific Sauce Labs test suites automatically. We can configure independent workflows so your Appium tests, Selenium tests, and Playwright tests run only when relevant files change, while keeping everything in one central repository.
